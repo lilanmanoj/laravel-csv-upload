@@ -31,9 +31,11 @@ class UploadsController extends Controller
      */
     public function store(Request $request)
     {
+        $maxFileSize = config('csvimport.max_file_size');
+
         // Validate the uploaded file
         $request->validate([
-            'file' => 'required|file|mimes:csv,txt|max:102400',
+            'file' => 'required|file|mimes:csv,txt|max:' . $maxFileSize,
         ]);
 
         // Upload file to storage
