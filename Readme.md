@@ -1,4 +1,4 @@
-## CSV upload and processing Laravel application
+## Laravel - CSV import using batches
 ---
 
 ### Requirements
