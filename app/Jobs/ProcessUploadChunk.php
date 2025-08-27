@@ -37,7 +37,7 @@ class ProcessUploadChunk implements ShouldQueue
         $data = [];
 
         foreach ($this->rows as $row) {
-            $fields = str_getcsv($row);
+            $fields = str_getcsv($row, ",", '"', "\\");
             $data[] = [
                 'upload_id' => $this->uploadId,
                 'name' => $fields[0],
