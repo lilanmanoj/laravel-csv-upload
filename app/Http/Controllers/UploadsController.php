@@ -33,7 +33,7 @@ class UploadsController extends Controller
     {
         // Validate the uploaded file
         $request->validate([
-            'file' => 'required|file|mimes:csv,txt',
+            'file' => 'required|file|mimes:csv,txt|max:102400',
         ]);
 
         // Upload file to storage
