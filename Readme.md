@@ -8,8 +8,12 @@
 - mysql
 
 ### Run the application
-1. Clone the repo to local
-2. ```cd <repo> && cp .env.example .env```
-3. ```php artisan key:generate```
-4. ```php artisan:migrate```
-5. ```composer run dev```
+1. Clone repo
+2. Run `composer install`
+3. Run `npm install && npm run build`
+3. Copy `.env.example` to `.env` and configure DB
+4. Run `php artisan key:generate`
+4. Run `php artisan migrate`
+5. Run `composer run dev`
+6. Go to `http://127.0.0.1:8000`
+7. Upload a CSV/Excel file (max 100MB, with headings: name, email, contact_no, address, birthday)
