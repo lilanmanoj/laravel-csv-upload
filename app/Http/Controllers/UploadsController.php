@@ -13,7 +13,7 @@ class UploadsController extends Controller
      */
     public function index()
     {
-        $uploads = Upload::all()->sortByDesc('created_at');
+        $uploads = Upload::orderBy('created_at', 'desc')->paginate(20);
 
         return view('uploads.index', compact('uploads'));
     }
@@ -54,8 +54,10 @@ class UploadsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(uploaded_users $uploaded_users)
+    public function show(int $id)
     {
-        //
+        $details = Upload::findOrFail($id)->details()->paginate(20);
+
+        return view('uploads.show', compact('details'));
     }
 }

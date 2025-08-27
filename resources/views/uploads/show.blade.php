@@ -1,9 +1,9 @@
-<x-layouts.app :title="__('Uploads')">
+<x-layouts.app :title="__('Upload Details')">
     <div class="flex items-center justify-between">
-        <h1 class="text-2xl font-semibold">{{ __('Uploads') }}</h1>
+        <h1 class="text-2xl font-semibold">{{ __('Upload Details') }}</h1>
         <div>
-            <a class="flex rounded-sm border px-4 py-2 hover:bg-neutral-700" href="{{ route('uploads.create') }}" wire:navigate>
-                {{ __('New Upload') }}
+            <a class="flex rounded-sm border px-4 py-2 hover:bg-neutral-700" href="{{ route('uploads') }}" wire:navigate>
+                {{ __('Back to List') }}
             </a>
         </div>
     </div>
@@ -13,44 +13,46 @@
             <thead class="bg-neutral-50 dark:bg-neutral-700">
                 <tr>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-neutral-500 dark:text-neutral-300">
-                        {{ __('ID') }}
+                        {{ __('Name') }}
                     </th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-neutral-500 dark:text-neutral-300">
-                        {{ __('Status') }}
+                        {{ __('Email') }}
                     </th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-neutral-500 dark:text-neutral-300">
-                        {{ __('Uploaded At') }}
+                        {{ __('Phone') }}
                     </th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-neutral-500 dark:text-neutral-300">
-                        {{ __('Action') }}
+                        {{ __('Address') }}
+                    </th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-neutral-500 dark:text-neutral-300">
+                        {{ __('Birthday') }}
                     </th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-neutral-200 bg-white dark:divide-neutral-700 dark:bg-neutral-800">
-                @if ($uploads->isEmpty())
+                @if ($details->isEmpty())
                     <tr>
                         <td colspan="4" class="px-6 py-4 text-center text-sm text-neutral-500 dark:text-neutral-400">
-                            {{ __('No uploads found.') }}
+                            {{ __('No details found.') }}
                         </td>
                     </tr>
                 @else
-                    @foreach ($uploads as $upload)
+                    @foreach ($details as $row)
                         <tr>
                             <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-neutral-900 dark:text-neutral-100">
-                                {{ $upload->id }}
+                                {{ $row->name }}
                             </td>
                             <td class="whitespace-nowrap px-6 py-4 text-sm text-neutral-900 dark:text-neutral-100">
-                                {{ $upload->status }}
+                                {{ $row->email }}
                             </td>
                             <td class="whitespace-nowrap px-6 py-4 text-sm text-neutral-900 dark:text-neutral-100">
-                                {{ $upload->created_at->format('Y-m-d H:i') }}
+                                {{ $row->phone }}
                             </td>
                             <td class="whitespace-nowrap px-6 py-4 text-sm text-neutral-900 dark:text-neutral-100">
-                                @if ($upload->status === 'Done')
-                                    <a href="{{ route('uploads.show', $upload->id) }}" wire:navigate>
-                                        {{ __('Show') }}
-                                    </a>
-                                @endif
+                                {{ $row->address }}
+                            </td>
+                            <td class="whitespace-nowrap px-6 py-4 text-sm text-neutral-900 dark:text-neutral-100">
+                                {{ $row->birthday }}
                             </td>
                         </tr>
                     @endforeach
@@ -58,7 +60,7 @@
             </tbody>
         </table>
         <div class="mt-4">
-            {{ $uploads->links() }}
+            {{ $details->links() }}
         </div>
     </div>
 </x-layouts.app>

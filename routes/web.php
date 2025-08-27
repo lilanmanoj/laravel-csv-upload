@@ -24,6 +24,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('uploads', [UploadsController::class, 'index'])->name('uploads');
     Route::get('uploads/create', [UploadsController::class, 'create'])->name('uploads.create');
     Route::post('uploads/store', [UploadsController::class, 'store'])->name('uploads.store');
+    Route::get('uploads/{id}', [UploadsController::class, 'show'])->name('uploads.show');
 });
 
 require __DIR__.'/auth.php';
